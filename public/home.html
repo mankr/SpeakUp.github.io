@@ -1,0 +1,49 @@
+<div class="row feed">
+		<div class="col-md-4">
+			<div ng-hide="currentUser">
+				<h4>Login:</h4>
+				<input type="text" size="30" placeholder="Username" ng-model="username">
+				<br><br>
+				<input type="password" size="30" placeholder="password" ng-model="password">
+				<br><br>
+				<button type="button" ng-click="signin()">Sign In</button>
+				<br><br>
+				<a href="#!/signup">Not a member? Signup</a>
+			</div>
+
+			<div ng-show="currentUser">
+				Hello, {{currentUser}}.
+				<br><br>
+				<a href ng-click="logout()">Logout</a>
+			</div>
+
+		</div>
+
+		<div class="col-md-8">
+
+			<div class="new-meow" ng-show="currentUser">
+				<label class="control-label" for="title">Title</label>
+				<input type="text" class="form-control" ng-model="newMeow" placeholder="Title" required >
+
+				<div class="form-group">
+					<label class="control-label" for="description">Description</label>
+					<textarea ng-model="description" class="form-control" cols="30" rows="10" placeholder="Description"></textarea>
+        		</div>
+
+				<button class="btn" type="button" ng-click="submitNewTalk()">Submit</button>
+			</div>
+			<h2 ng-show="currentUser">Dashboard</h2>
+			<h3 ng-repeat="meow in meows" ng-show="currentUser">
+				<span style="color: blue">Title: </span>
+				{{meow.text}}
+				<br>
+				<span style="color: blue">Description: </span>
+				{{meow.tweet}}
+				<br>
+				<small>{{ meow.username }}</small>
+				<a href ng-click="removeMeow(meow)"><span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="tooltip" title="Remove Task"></a>
+
+			</h3>
+
+		</div>
+	</div>
